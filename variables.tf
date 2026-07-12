@@ -139,137 +139,137 @@ EOT
     description         = optional(string)
     request = optional(object({
       description = optional(string)
-      header = optional(object({
+      header = optional(list(object({
         default_value = optional(string)
         description   = optional(string)
-        example = optional(object({
+        example = optional(list(object({
           description    = optional(string)
           external_value = optional(string)
           name           = string
           summary        = optional(string)
           value          = optional(string)
-        }))
+        })))
         name      = string
         required  = bool
         schema_id = optional(string)
         type      = string
         type_name = optional(string)
         values    = optional(set(string))
-      }))
-      query_parameter = optional(object({
+      })))
+      query_parameter = optional(list(object({
         default_value = optional(string)
         description   = optional(string)
-        example = optional(object({
+        example = optional(list(object({
           description    = optional(string)
           external_value = optional(string)
           name           = string
           summary        = optional(string)
           value          = optional(string)
-        }))
+        })))
         name      = string
         required  = bool
         schema_id = optional(string)
         type      = string
         type_name = optional(string)
         values    = optional(set(string))
-      }))
-      representation = optional(object({
+      })))
+      representation = optional(list(object({
         content_type = string
-        example = optional(object({
+        example = optional(list(object({
           description    = optional(string)
           external_value = optional(string)
           name           = string
           summary        = optional(string)
           value          = optional(string)
-        }))
-        form_parameter = optional(object({
+        })))
+        form_parameter = optional(list(object({
           default_value = optional(string)
           description   = optional(string)
-          example = optional(object({
+          example = optional(list(object({
             description    = optional(string)
             external_value = optional(string)
             name           = string
             summary        = optional(string)
             value          = optional(string)
-          }))
+          })))
           name      = string
           required  = bool
           schema_id = optional(string)
           type      = string
           type_name = optional(string)
           values    = optional(set(string))
-        }))
+        })))
         schema_id = optional(string)
         type_name = optional(string)
-      }))
+      })))
     }))
-    response = optional(object({
+    response = optional(list(object({
       description = optional(string)
-      header = optional(object({
+      header = optional(list(object({
         default_value = optional(string)
         description   = optional(string)
-        example = optional(object({
+        example = optional(list(object({
           description    = optional(string)
           external_value = optional(string)
           name           = string
           summary        = optional(string)
           value          = optional(string)
-        }))
+        })))
         name      = string
         required  = bool
         schema_id = optional(string)
         type      = string
         type_name = optional(string)
         values    = optional(set(string))
-      }))
-      representation = optional(object({
+      })))
+      representation = optional(list(object({
         content_type = string
-        example = optional(object({
+        example = optional(list(object({
           description    = optional(string)
           external_value = optional(string)
           name           = string
           summary        = optional(string)
           value          = optional(string)
-        }))
-        form_parameter = optional(object({
+        })))
+        form_parameter = optional(list(object({
           default_value = optional(string)
           description   = optional(string)
-          example = optional(object({
+          example = optional(list(object({
             description    = optional(string)
             external_value = optional(string)
             name           = string
             summary        = optional(string)
             value          = optional(string)
-          }))
+          })))
           name      = string
           required  = bool
           schema_id = optional(string)
           type      = string
           type_name = optional(string)
           values    = optional(set(string))
-        }))
+        })))
         schema_id = optional(string)
         type_name = optional(string)
-      }))
+      })))
       status_code = number
-    }))
-    template_parameter = optional(object({
+    })))
+    template_parameter = optional(list(object({
       default_value = optional(string)
       description   = optional(string)
-      example = optional(object({
+      example = optional(list(object({
         description    = optional(string)
         external_value = optional(string)
         name           = string
         summary        = optional(string)
         value          = optional(string)
-      }))
+      })))
       name      = string
       required  = bool
       schema_id = optional(string)
       type      = string
       type_name = optional(string)
       values    = optional(set(string))
-    }))
+    })))
   }))
   # --- Unconfirmed validation candidates, derived from azurerm_api_management_api_operation's provider source ---
   # Not auto-enabled: either a bespoke provider validator we can't safely translate,

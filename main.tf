@@ -15,12 +15,12 @@ resource "azurerm_api_management_api_operation" "api_management_api_operations" 
     content {
       description = request.value.description
       dynamic "header" {
-        for_each = request.value.header != null ? [request.value.header] : []
+        for_each = request.value.header != null ? request.value.header : []
         content {
           default_value = header.value.default_value
           description   = header.value.description
           dynamic "example" {
-            for_each = header.value.example != null ? [header.value.example] : []
+            for_each = header.value.example != null ? header.value.example : []
             content {
               description    = example.value.description
               external_value = example.value.external_value
@@ -38,12 +38,12 @@ resource "azurerm_api_management_api_operation" "api_management_api_operations" 
         }
       }
       dynamic "query_parameter" {
-        for_each = request.value.query_parameter != null ? [request.value.query_parameter] : []
+        for_each = request.value.query_parameter != null ? request.value.query_parameter : []
         content {
           default_value = query_parameter.value.default_value
           description   = query_parameter.value.description
           dynamic "example" {
-            for_each = query_parameter.value.example != null ? [query_parameter.value.example] : []
+            for_each = query_parameter.value.example != null ? query_parameter.value.example : []
             content {
               description    = example.value.description
               external_value = example.value.external_value
@@ -61,11 +61,11 @@ resource "azurerm_api_management_api_operation" "api_management_api_operations" 
         }
       }
       dynamic "representation" {
-        for_each = request.value.representation != null ? [request.value.representation] : []
+        for_each = request.value.representation != null ? request.value.representation : []
         content {
           content_type = representation.value.content_type
           dynamic "example" {
-            for_each = representation.value.example != null ? [representation.value.example] : []
+            for_each = representation.value.example != null ? representation.value.example : []
             content {
               description    = example.value.description
               external_value = example.value.external_value
@@ -75,12 +75,12 @@ resource "azurerm_api_management_api_operation" "api_management_api_operations" 
             }
           }
           dynamic "form_parameter" {
-            for_each = representation.value.form_parameter != null ? [representation.value.form_parameter] : []
+            for_each = representation.value.form_parameter != null ? representation.value.form_parameter : []
             content {
               default_value = form_parameter.value.default_value
               description   = form_parameter.value.description
               dynamic "example" {
-                for_each = form_parameter.value.example != null ? [form_parameter.value.example] : []
+                for_each = form_parameter.value.example != null ? form_parameter.value.example : []
                 content {
                   description    = example.value.description
                   external_value = example.value.external_value
@@ -105,16 +105,16 @@ resource "azurerm_api_management_api_operation" "api_management_api_operations" 
   }
 
   dynamic "response" {
-    for_each = each.value.response != null ? [each.value.response] : []
+    for_each = each.value.response != null ? each.value.response : []
     content {
       description = response.value.description
       dynamic "header" {
-        for_each = response.value.header != null ? [response.value.header] : []
+        for_each = response.value.header != null ? response.value.header : []
         content {
           default_value = header.value.default_value
           description   = header.value.description
           dynamic "example" {
-            for_each = header.value.example != null ? [header.value.example] : []
+            for_each = header.value.example != null ? header.value.example : []
             content {
               description    = example.value.description
               external_value = example.value.external_value
@@ -132,11 +132,11 @@ resource "azurerm_api_management_api_operation" "api_management_api_operations" 
         }
       }
       dynamic "representation" {
-        for_each = response.value.representation != null ? [response.value.representation] : []
+        for_each = response.value.representation != null ? response.value.representation : []
         content {
           content_type = representation.value.content_type
           dynamic "example" {
-            for_each = representation.value.example != null ? [representation.value.example] : []
+            for_each = representation.value.example != null ? representation.value.example : []
             content {
               description    = example.value.description
               external_value = example.value.external_value
@@ -146,12 +146,12 @@ resource "azurerm_api_management_api_operation" "api_management_api_operations" 
             }
           }
           dynamic "form_parameter" {
-            for_each = representation.value.form_parameter != null ? [representation.value.form_parameter] : []
+            for_each = representation.value.form_parameter != null ? representation.value.form_parameter : []
             content {
               default_value = form_parameter.value.default_value
               description   = form_parameter.value.description
               dynamic "example" {
-                for_each = form_parameter.value.example != null ? [form_parameter.value.example] : []
+                for_each = form_parameter.value.example != null ? form_parameter.value.example : []
                 content {
                   description    = example.value.description
                   external_value = example.value.external_value
@@ -177,12 +177,12 @@ resource "azurerm_api_management_api_operation" "api_management_api_operations" 
   }
 
   dynamic "template_parameter" {
-    for_each = each.value.template_parameter != null ? [each.value.template_parameter] : []
+    for_each = each.value.template_parameter != null ? each.value.template_parameter : []
     content {
       default_value = template_parameter.value.default_value
       description   = template_parameter.value.description
       dynamic "example" {
-        for_each = template_parameter.value.example != null ? [template_parameter.value.example] : []
+        for_each = template_parameter.value.example != null ? template_parameter.value.example : []
         content {
           description    = example.value.description
           external_value = example.value.external_value
