@@ -271,45 +271,30 @@ EOT
       values    = optional(set(string))
     })))
   }))
-  # --- Unconfirmed validation candidates, derived from azurerm_api_management_api_operation's provider source ---
-  # Not auto-enabled: either a bespoke provider validator we can't safely translate,
-  # or a path that crosses a list-typed block (needs its own for_each wrapping).
-  # Review, translate into a real validation{} block above, and delete once confirmed.
-  # path: operation_id
-  #   source:    [from validate.ApiManagementChildName] !matched
-  # path: api_name
-  #   source:    validate.ApiManagementApiName: no recognizable `if ... { errors = append(...) }` pattern - read it by hand
-  # path: api_management_name
-  #   source:    [from validate.ApiManagementServiceName] !matched
-  # path: resource_group_name
-  #   condition: length(value) <= 90
-  #   message:   [from resourcegroups.ValidateName: invalid when len(value) > 90]
-  #   source:    [from resourcegroups.ValidateName: invalid when len(value) > 90]
-  # path: resource_group_name
-  #   condition: !endswith(value, ".")
-  #   message:   [from resourcegroups.ValidateName: must not end with "."]
-  #   source:    [from resourcegroups.ValidateName: must not end with "."]
-  # path: resource_group_name
-  #   condition: length(value) != 0
-  #   message:   [from resourcegroups.ValidateName: invalid when len(value) == 0]
-  #   source:    [from resourcegroups.ValidateName: invalid when len(value) == 0]
-  # path: resource_group_name
-  #   source:    [from resourcegroups.ValidateName] !matched
-  # path: request.header.example.external_value
-  #   source:    validation.IsURLWithHTTPorHTTPS(...) - no translation rule yet, add one
-  # path: request.query_parameter.example.external_value
-  #   source:    validation.IsURLWithHTTPorHTTPS(...) - no translation rule yet, add one
-  # path: request.representation.form_parameter.example.external_value
-  #   source:    validation.IsURLWithHTTPorHTTPS(...) - no translation rule yet, add one
-  # path: request.representation.example.external_value
-  #   source:    validation.IsURLWithHTTPorHTTPS(...) - no translation rule yet, add one
-  # path: response.header.example.external_value
-  #   source:    validation.IsURLWithHTTPorHTTPS(...) - no translation rule yet, add one
-  # path: response.representation.form_parameter.example.external_value
-  #   source:    validation.IsURLWithHTTPorHTTPS(...) - no translation rule yet, add one
-  # path: response.representation.example.external_value
-  #   source:    validation.IsURLWithHTTPorHTTPS(...) - no translation rule yet, add one
-  # path: template_parameter.example.external_value
-  #   source:    validation.IsURLWithHTTPorHTTPS(...) - no translation rule yet, add one
+  validation {
+    condition = alltrue([
+      for k, v in var.api_management_api_operations : (
+        length(v.resource_group_name) <= 90
+      )
+    ])
+    error_message = "[from resourcegroups.ValidateName: invalid when len(value) > 90]"
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.api_management_api_operations : (
+        !endswith(v.resource_group_name, ".")
+      )
+    ])
+    error_message = "[from resourcegroups.ValidateName: must not end with \".\"]"
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.api_management_api_operations : (
+        length(v.resource_group_name) != 0
+      )
+    ])
+    error_message = "[from resourcegroups.ValidateName: invalid when len(value) == 0]"
+  }
+  # Note: 12 additional provider-side validators are enforced at apply time but not mirrored as validation{} blocks here (bespoke or non-mechanically-translatable).
 }
 
