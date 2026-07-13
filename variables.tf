@@ -295,5 +295,21 @@ EOT
   #   source:    [from resourcegroups.ValidateName: invalid when len(value) == 0]
   # path: resource_group_name
   #   source:    [from resourcegroups.ValidateName] !matched
+  # path: request.header.example.external_value
+  #   source:    validation.IsURLWithHTTPorHTTPS(...) - no translation rule yet, add one
+  # path: request.query_parameter.example.external_value
+  #   source:    validation.IsURLWithHTTPorHTTPS(...) - no translation rule yet, add one
+  # path: request.representation.form_parameter.example.external_value
+  #   source:    validation.IsURLWithHTTPorHTTPS(...) - no translation rule yet, add one
+  # path: request.representation.example.external_value
+  #   source:    validation.IsURLWithHTTPorHTTPS(...) - no translation rule yet, add one
+  # path: response.header.example.external_value
+  #   source:    validation.IsURLWithHTTPorHTTPS(...) - no translation rule yet, add one
+  # path: response.representation.form_parameter.example.external_value
+  #   source:    validation.IsURLWithHTTPorHTTPS(...) - no translation rule yet, add one
+  # path: response.representation.example.external_value
+  #   source:    validation.IsURLWithHTTPorHTTPS(...) - no translation rule yet, add one
+  # path: template_parameter.example.external_value
+  #   source:    validation.IsURLWithHTTPorHTTPS(...) - no translation rule yet, add one
 }
 
