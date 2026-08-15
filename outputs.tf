@@ -28,7 +28,7 @@ output "api_management_api_operations_operation_id" {
 }
 output "api_management_api_operations_request" {
   description = "Map of request values across all api_management_api_operations, keyed the same as var.api_management_api_operations"
-  value       = { for k, v in azurerm_api_management_api_operation.api_management_api_operations : k => v.request if v.request != null && length(v.request) > 0 }
+  value       = { for k, v in azurerm_api_management_api_operation.api_management_api_operations : k => one(v.request) if v.request != null && length(v.request) > 0 }
 }
 output "api_management_api_operations_resource_group_name" {
   description = "Map of resource_group_name values across all api_management_api_operations, keyed the same as var.api_management_api_operations"
